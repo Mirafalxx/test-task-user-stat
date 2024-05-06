@@ -1,9 +1,9 @@
 import React, { useMemo, memo } from "react";
-import StatisticItem from "../StatisticItem/StatisticItem";
-import StatisticItemSkeleton from "../StatisticItemSkeleton/StatisticItemSkeleton";
-import style from "./style.module.scss";
-import { IAgeGroupStats, IGenderGroupStats } from "../../store/types/userTypes";
+import StatisticItem from "components/StatisticItem/StatisticItem";
+import { IAgeGroupStats, IGenderGroupStats } from "store/types/userTypes";
+import StatisticItemSkeleton from "components/StatisticItemSkeleton/StatisticItemSkeleton";
 
+import style from "./style.module.scss";
 type UserStatProps = {
   ageGroups: IAgeGroupStats;
   gengerGroups: IGenderGroupStats;
@@ -25,23 +25,25 @@ export const UsersStat: React.FC<UserStatProps> = memo(({ ageGroups, gengerGroup
   }, [gengerGroups]);
 
   return (
-    <div className={style.users_stat}>
-      {loading ? (
-        <div className={style.sekelton_total_users}></div>
-      ) : (
-        <p className={style.total_users}>{`${totalUsers} ${totalUsers === 1 ? "user" : "users"}`}</p>
-      )}
+    <div className={style.users_stat_wrapper}>
+      <div className={style.users_stat}>
+        {loading ? (
+          <div className={style.sekelton_total_users}></div>
+        ) : (
+          <p className={style.total_users}>{`${totalUsers} ${totalUsers === 1 ? "user" : "users"}`}</p>
+        )}
 
-      <div className={style.divider}></div>
-      <div className={style.groups_wrapper}>
-        <p className={style.subtitle}>Age Groups</p>
-        {loading ? <StatisticItemSkeleton /> : <> {ageGroupsItems}</>}
-      </div>
-      <div className={style.divider}></div>
-      <div className={style.groups_wrapper}>
-        <p className={style.subtitle}>Gender Groups</p>
+        <div className={style.divider}></div>
+        <div className={style.groups_wrapper}>
+          <p className={style.subtitle}>Age Groups</p>
+          {loading ? <StatisticItemSkeleton /> : <> {ageGroupsItems}</>}
+        </div>
+        <div className={style.divider}></div>
+        <div className={style.groups_wrapper}>
+          <p className={style.subtitle}>Gender Groups</p>
 
-        {loading ? <StatisticItemSkeleton skeletonLength={2} /> : <> {gengerGroupsItems}</>}
+          {loading ? <StatisticItemSkeleton skeletonLength={2} /> : <> {gengerGroupsItems}</>}
+        </div>
       </div>
     </div>
   );

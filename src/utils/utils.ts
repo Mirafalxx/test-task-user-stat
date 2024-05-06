@@ -1,4 +1,4 @@
-import { IAgeGroupStats, IGenderGroupStats, IUser } from "../store/types/userTypes";
+import { IAgeGroupStats, IGenderGroupStats, IUser } from '../store/types/userTypes';
 
 export const ageGroupStats = (users: IUser[]): IAgeGroupStats => {
   const ageGroups: IAgeGroupStats = {};
@@ -11,15 +11,17 @@ export const ageGroupStats = (users: IUser[]): IAgeGroupStats => {
     { min: 51, max: Infinity },
   ];
 
-  ageIntervals.forEach((interval) => {
-    ageGroups[`${interval.min} to ${interval.max === Infinity ? "∞" : interval.max}`] = 0;
+  ageIntervals.forEach((interval, index) => {
+    const displayValue = index === ageIntervals.length - 1 ? '51 +' : `${interval.min} to ${interval.max}`;
+    ageGroups[displayValue] = 0;
   });
 
   users.forEach((person) => {
     const age = person.dob.age;
     for (const interval of ageIntervals) {
       if (age >= interval.min && age <= interval.max) {
-        ageGroups[`${interval.min} to ${interval.max === Infinity ? "∞" : interval.max}`]++;
+        const displayValue = interval.max === Infinity ? '51 +' : `${interval.min} to ${interval.max}`;
+        ageGroups[displayValue]++;
         break;
       }
     }
@@ -33,10 +35,10 @@ export const genderGroupStats = (users: IUser[]): IGenderGroupStats => {
 
   users.forEach((person) => {
     const gender = person.gender.toLowerCase();
-    if (gender === "male") {
-      genderGroups["male"]++;
-    } else if (gender === "female") {
-      genderGroups["female"]++;
+    if (gender === 'male') {
+      genderGroups['male']++;
+    } else if (gender === 'female') {
+      genderGroups['female']++;
     }
   });
 
@@ -58,8 +60,8 @@ export const filterUsers = (users: IUser[] | [], term: string): IUser[] => {
         person.dob.date.toLowerCase().includes(lowerCaseSearchTerm) ||
         person.phone
           .toLowerCase()
-          .replace(/[\s()-]/g, "")
-          .includes(lowerCaseSearchTerm.replace(/[\s()-]/g, ""))
+          .replace(/[\s()-]/g, '')
+          .includes(lowerCaseSearchTerm.replace(/[\s()-]/g, ''))
       );
     });
   } else return [];

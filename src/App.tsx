@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
-import { useAppDispatch } from "./utils/hooks/redux-hooks";
-import { fetchUsers } from "./store/api/usersApi";
-import Container from "./components/Container/Container";
-import Header from "./components/Header/Header";
-import Users from "./components/Users/Users";
+import React, { useEffect } from 'react';
+import Container from 'components/Container/Container';
+import Header from 'components/Header/Header';
+import Users from 'components/Users/Users';
+import { fetchUsers } from 'store/api/usersApi';
+import { useAppDispatch } from 'utils/hooks/redux-hooks';
 
 const App: React.FC = () => {
   const dispatch = useAppDispatch();

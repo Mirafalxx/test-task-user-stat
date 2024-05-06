@@ -1,20 +1,13 @@
-import UserCard from "../UserCard/UserCard";
-import { useSelector } from "react-redux";
-import {
-  getAgeGroups,
-  getGengerGroups,
-  getLoading,
-  getSearchTerm,
-  getTotalUsers,
-  getUsers,
-} from "../../store/slices/userSlice";
-import UserCardSkeleton from "../UserCardSkeleton/UserCardSkeleton";
-import { useEffect, useState } from "react";
-import { IUser } from "../../store/types/userTypes";
-import { filterUsers } from "../../utils/utils";
-import style from "./style.module.scss";
-import { UsersStat } from "../UsersStat/UsersStat";
+import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
 
+import { filterUsers } from 'utils/utils';
+import { getAgeGroups, getGengerGroups, getLoading, getSearchTerm, getTotalUsers, getUsers } from 'store/slices/userSlice';
+import { IUser } from 'store/types/userTypes';
+import UserCard from 'components/UserCard/UserCard';
+import { UsersStat } from 'components/UsersStat/UsersStat';
+import UserCardSkeleton from 'components/UserCardSkeleton/UserCardSkeleton';
+import style from './style.module.scss';
 const Users = () => {
   const users = useSelector(getUsers);
   const searchTerm = useSelector(getSearchTerm);
@@ -39,33 +32,31 @@ const Users = () => {
 
   return (
     <div className={style.users_screen}>
-      <div className={style.user_cards}>
-        {filteredUsersLoading ? (
-          <UserCardSkeleton skeletonLength={100} />
-        ) : (
-          <>
-            {filteredUsers.length > 0 ? (
-              filteredUsers?.map((person) => (
-                <UserCard
-                  {...person}
-                  key={person.login.uuid}
-                  onClick={() => {
-                    handleDeleteUser(person.login.uuid);
-                  }}
-                />
-              ))
-            ) : (
-              <div className={style.users_not_found}>no data</div>
-            )}
-          </>
-        )}
+      <div className={style.users_screen_wrapper}>
+        <div className={style.user_cards}>
+          {filteredUsersLoading ? (
+            <UserCardSkeleton skeletonLength={20} />
+          ) : (
+            <>
+              {filteredUsers.length > 0 ? (
+                filteredUsers?.map((person) => (
+                  <UserCard
+                    {...person}
+                    key={person.login.uuid}
+                    onClick={() => {
+                      handleDeleteUser(person.login.uuid);
+                    }}
+                  />
+                ))
+              ) : (
+                <div className={style.users_not_found}>no data</div>
+              )}
+            </>
+          )}
+        </div>
       </div>
-      <UsersStat
-        ageGroups={ageGroups}
-        gengerGroups={gengerGroups}
-        loading={loading}
-        totalUsers={totalUsers}
-      />
+
+      <UsersStat ageGroups={ageGroups} gengerGroups={gengerGroups} loading={loading} totalUsers={totalUsers} />
     </div>
   );
 };

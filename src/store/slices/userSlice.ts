@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { fetchUsers } from "../api/usersApi";
-import { IAgeGroupStats, IGenderGroupStats, IUser } from "../types/userTypes";
+import { fetchUsers } from "store/api/usersApi";
+import { IAgeGroupStats, IGenderGroupStats, IUser } from "store/types/userTypes";
 
 type UserState = {
   users: IUser[] | [];

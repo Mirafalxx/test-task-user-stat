@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { IDob, ILocation, IName, IPicture } from "../../store/types/userTypes";
 import style from "./style.module.scss";
 import dayjs from "dayjs";
+import { IDob, ILocation, IName, IPicture } from "store/types/userTypes";
 
 type UserCardProps = {
   dob: IDob;

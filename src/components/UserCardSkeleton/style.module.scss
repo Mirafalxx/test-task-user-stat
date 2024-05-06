@@ -1,0 +1,71 @@
+@import "../../styles/global/mixins.scss";
+
+.user_card_skeleton {
+  background: #1a1c23;
+  padding: 20px 0 20px 20px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 332px;
+  gap: 16px;
+  height: 240px;
+  border-radius: var(--border-radius-xl);
+
+  .field_description {
+    color: #8c8988;
+    font-size: 12px;
+    min-width: 60px;
+  }
+  .name_details {
+    display: flex;
+    align-items: center;
+
+    .avatar {
+      width: 56px;
+      height: 56px;
+      margin-right: 16px;
+      border-radius: 50%;
+      @include skeletonAnimation(#2e2f36, #2b2d34, #383a40, 1.5s);
+    }
+    .name {
+      font-size: 20px;
+      font-weight: 600;
+    }
+    .email {
+    }
+  }
+
+  .contact_details {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding-right: 15px;
+    &__item {
+      display: flex;
+      padding: 10px 0;
+      border-radius: 4px;
+      @include skeletonAnimation(#2e2f36, #2b2d34, #383a40, 1.5s);
+
+      gap: 16px;
+      .location {
+        white-space: nowrap;
+        width: 70%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        &:hover::after {
+          content: attr(data-text); /* Показываем содержимое атрибута data-text */
+          position: absolute;
+          background: #1a1c23;
+          padding: 5px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          z-index: 1;
+          max-width: 100%;
+          overflow-wrap: break-word;
+          white-space: normal; /* Для переноса текста на несколько строк */
+        }
+      }
+    }
+  }
+}

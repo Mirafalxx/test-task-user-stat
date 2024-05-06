@@ -1,0 +1,20 @@
+@import "../../styles/global/mixins.scss";
+
+.statistic_skeleton {
+  display: flex;
+  flex-direction: column;
+  display: flex;
+  gap: 15px;
+
+  &:not(:last-child) {
+    margin-bottom: 12px;
+  }
+
+  .skeleton_age_group {
+    display: flex;
+    gap: 15px;
+    height: 20px;
+    border-radius: 5px;
+    @include skeletonAnimation(#2e2f36, #2b2d34, #383a40, 1.5s);
+  }
+}

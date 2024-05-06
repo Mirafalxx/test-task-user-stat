@@ -1,0 +1,13 @@
+.button {
+  width: 100%;
+  color: #cf7b5a;
+  background: transparent;
+  border: none;
+  font-weight: 600;
+  padding: 4px 0;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+  &:hover {
+    color: #ca663f;
+  }
+}

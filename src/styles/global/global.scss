@@ -1,0 +1,26 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --text-color: #dcd8d3;
+  --border-radius-xl: 16px;
+}
+
+body {
+  background: #12141b;
+  font-family: "Jura", sans-serif;
+  line-height: 1.5;
+  font-size: 14px;
+  color: var(--text-color);
+  font-weight: 500;
+}
+
+.app {
+  width: 100vw;
+  height: 100vh;
+}

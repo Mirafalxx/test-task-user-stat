@@ -1,11 +1,11 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import { IAgeGroupStats, IGenderGroupStats, IUser } from "store/types/userTypes";
-import axiosApi from "utils/axiosApi";
-import { ageGroupStats, genderGroupStats } from "utils/utils";
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { IAgeGroupStats, IGenderGroupStats, IUser } from 'store/types/userTypes';
+import axiosApi from 'utils/axiosApi';
+import { ageGroupStats, genderGroupStats } from 'utils/utils';
 
-export const fetchUsers = createAsyncThunk("fetchUsers", async (_, { rejectWithValue }) => {
+export const fetchUsers = createAsyncThunk('fetchUsers', async (_, { rejectWithValue }) => {
   try {
-    const response = await axiosApi.get("/api/", {
+    const response = await axiosApi.get('/api/', {
       params: {
         results: 100,
       },
@@ -18,6 +18,6 @@ export const fetchUsers = createAsyncThunk("fetchUsers", async (_, { rejectWithV
 
     return { users, ageGroups, genderGroups, totalUsers };
   } catch (error) {
-    rejectWithValue("error");
+    rejectWithValue('error');
   }
 });

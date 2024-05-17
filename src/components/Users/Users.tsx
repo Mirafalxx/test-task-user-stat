@@ -32,7 +32,7 @@ const Users = () => {
 
   return (
     <div className={style.users_screen}>
-      <div className={style.users_screen_wrapper}>
+      <div className={style.test}>
         <div className={style.user_cards}>
           {filteredUsersLoading ? (
             <UserCardSkeleton skeletonLength={20} />

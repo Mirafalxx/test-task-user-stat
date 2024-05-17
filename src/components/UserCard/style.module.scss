@@ -4,13 +4,21 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 332px;
+  max-width: calc(24% - 20px);
   gap: 16px;
   max-height: 230px;
   border-radius: var(--border-radius-xl);
-  border: 1px solid #cf7b5a33;
+  border: 1px solid transparent;
   position: relative;
   overflow: hidden;
+
+  @media screen and (max-width: 1920px) {
+    max-width: calc(33% - 20px);
+  }
+
+  &.active {
+    border-color: #cf7b5a33;
+  }
 
   p,
   span {
@@ -29,7 +37,7 @@
     position: absolute;
     width: 44px;
     height: 44px;
-    background-image: url("../../assets/trash-ic.svg");
+    background-image: url('../../assets/trash-ic.svg');
     background-repeat: no-repeat;
     background-position: center;
     top: 0;
@@ -60,11 +68,14 @@
         height: 100%;
       }
     }
-    .name {
-      font-size: 20px;
-      font-weight: 600;
-    }
-    .email {
+
+    .user_info {
+      width: calc(100% - 100px);
+
+      .name {
+        font-size: 20px;
+        font-weight: 600;
+      }
     }
   }
 
@@ -80,7 +91,6 @@
     }
   }
   .overflow_text_data {
-    flex: 1;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

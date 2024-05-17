@@ -1,7 +1,8 @@
-import React, { useState } from "react";
-import style from "./style.module.scss";
-import dayjs from "dayjs";
-import { IDob, ILocation, IName, IPicture } from "store/types/userTypes";
+import React, { useState } from 'react';
+import dayjs from 'dayjs';
+import { IDob, ILocation, IName, IPicture } from 'store/types/userTypes';
+import cn from 'classnames';
+import style from './style.module.scss';
 
 type UserCardProps = {
   dob: IDob;
@@ -17,19 +18,19 @@ const UserCard: React.FC<UserCardProps> = (props) => {
   const { dob, name, phone, picture, location, email, onClick } = props;
 
   const [displayDelete, setDisplayDelete] = useState(false);
-  const date = dayjs(dob.date, { format: "YYYY-MM-DD" });
-  const formattedDate = date.format("DD MMMM YYYY");
+  const date = dayjs(dob.date, { format: 'YYYY-MM-DD' });
+  const formattedDate = date.format('DD MMMM YYYY');
   const handleDisplayButton = () => {
     setDisplayDelete((prev) => !prev);
   };
 
   return (
-    <div className={style.user_card} onClick={handleDisplayButton}>
+    <div className={cn(style.user_card, { [style.active]: displayDelete })} onClick={handleDisplayButton}>
       {displayDelete && <div onClick={onClick} className={style.delete_btn}></div>}
 
       <div className={style.name_details}>
         <img src={picture.thumbnail} alt="user_vatar" className={style.avatar} />
-        <div>
+        <div className={style.user_info}>
           <p className={style.name}>{`${name.first} ${name.last}`}</p>
           <p className={style.overflow_text_data}>{email}</p>
         </div>
@@ -45,9 +46,7 @@ const UserCard: React.FC<UserCardProps> = (props) => {
         </div>
         <div className={style.contact_details__item}>
           <span className={style.field_description}>Address</span>
-          <span
-            className={style.overflow_text_data}
-          >{`${location.city}, ${location.state}, ${location.country}`}</span>
+          <span className={style.overflow_text_data}>{`${location.city}, ${location.state}, ${location.country}`}</span>
         </div>
       </div>
     </div>

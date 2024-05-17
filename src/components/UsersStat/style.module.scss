@@ -1,9 +1,5 @@
 @import '../../styles/global/mixins.scss';
-.users_stat_wrapper {
-  padding-bottom: 32px;
-  padding-bottom: 32px;
-  height: 90vh;
-}
+
 .users_stat {
   width: 332px;
   display: flex;
@@ -12,6 +8,7 @@
   border: none;
   border-radius: var(--border-radius-xl);
   height: 100%;
+
   padding: 24px;
   .total_users {
     font-size: 20px;
